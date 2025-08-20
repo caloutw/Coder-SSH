@@ -33,7 +33,7 @@ RUN DEBIAN_FRONTEND=$DEBIAN_FRONTEND apt update -y && \
 COPY sshd_config /etc/ssh/sshd_config
 
 #Configure /run/sshd dir
-RUN mkdir /run/sshd
+RUN mkdir -p /run/sshd
 
 #Make cont dir
 RUN mkdir /cont
