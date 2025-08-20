@@ -19,19 +19,10 @@ echo "構建時間: $BUILD_DATE"
 echo "Git Commit: $GIT_COMMIT"
 echo
 
-# 檢查是否已登入 Docker Hub
+# 檢查是否已登入 Docker Hub，如果沒有則自動登入
 if ! docker info | grep -q "Username"; then
-    echo "請先登入 Docker Hub:"
-    echo "docker login"
-    echo
-    read -p "是否現在登入 Docker Hub? (y/n): " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        docker login
-    else
-        echo "請先執行 'docker login' 再運行此腳本"
-        exit 1
-    fi
+    echo "正在登入 Docker Hub..."
+    docker login
 fi
 
 echo "開始構建多架構 Docker 映像..."
